@@ -153,7 +153,7 @@ class ClienteController extends Controller {
             'estado' => $request->input('estado'),
             'cidade' => $request->input('cidade'),
         ];
-         
+        
         $cm = new Cliente;
         
         $clientes = $cm->executaRelatorio($filters);

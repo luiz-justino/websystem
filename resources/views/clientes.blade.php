@@ -1,7 +1,44 @@
 @extends('layout.app', ["current" => "clientes"])
 
 @section('body')
+<link href="{{ asset('css/app.css')}}" rel="stylesheet">
+<link href="{{ asset('css/jquery.dataTables.min.css')}}" rel="stylesheet">
+
+<script src="{{ asset('js/app.js')}}" type="text/javascript"></script>
+<script src="{{ asset('js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tblClientes').DataTable( {
+            "language": {
+            "sEmptyTable": "Nenhum registro encontrado",
+            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            "sInfoEmpty": "Exibindo 0 até 0 de 0 registros",
+            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ".",
+            "sLengthMenu": "_MENU_ resultados por página",
+            "sLoadingRecords": "Carregando...",
+            "sProcessing": "Processando...",
+            "sZeroRecords": "Nenhum registro encontrado",
+            "sSearch": "Pesquisar",
+              "paginate": {
+                "previous": "Anterior  ",
+                "next": "  Próximo",
+                "sFirst": "Primeiro",
+                "sLast": "Último",
+              }
+          }
+        });
+    });
+</script>
 <div class="card border">
+    <style>
+        td{
+            height: auto;
+            line-height: initial;
+            padding: 0px;
+        }
+    </style>
     <div class="card-header">
         <div class="card-title">
             <h3>Clientes</h3>
@@ -22,7 +59,7 @@
         @endif
     </div>    
     <div class="card-body">
-        <table class=" table table-ordered table-hover">
+        <table class=" table table-ordered table-hover" id="tblClientes" style="width: 100%">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -61,6 +98,8 @@
         </table>
     </div>
 </div>
+<script src="{{ asset('js/app.js')}}" type="text/javascript"></script>
+<script src="{{ asset('js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     function editar(id) {
     window.location.href = "clientes/editar/" + id;
@@ -70,7 +109,6 @@
     if (false === confirm('Deseja realmente excluir este clientes?')) {
     return false;
     }
-
     window.location.href = "clientes/excluir/" + id;
     }
 </script>

@@ -1,6 +1,35 @@
 @extends('layout.app', ["current" => "novoCliente"])
 
 @section('body')
+<script src="{{ asset('js/app.js')}}" type="text/javascript"></script>
+<script src="{{ asset('js/cidades-estados-1.4-utf8.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+    function buscaCidades(e) {
+        document.querySelector("#cidade").innerHTML = '';
+        var cidade_select = document.querySelector("#cidade");
+        var num_estados = json_cidades.estados.length;
+        var j_index = -1;
+        // aqui eu pego o index do Estado dentro do JSON
+        for (var x = 0; x < num_estados; x++) {
+            if (json_cidades.estados[x].sigla == e) {
+                j_index = x;
+            }
+        }
+
+        if (j_index != -1) {
+
+            // aqui eu percorro todas as cidades e crio os OPTIONS
+            json_cidades.estados[j_index].cidades.forEach(function (cidade) {
+                var cid_opts = document.createElement('option');
+                cid_opts.setAttribute('value', cidade)
+                cid_opts.innerHTML = cidade;
+                cidade_select.appendChild(cid_opts);
+            });
+        } else {
+            document.querySelector("#cidade").innerHTML = '';
+        }
+    }
+</script>
 <div class="card border">
     <div class="card-header">
         <div class="card-title">
@@ -60,42 +89,13 @@
             <div class="form-group row">
                 <label for="estado" class="col-3 col-form-label">Estado</label> 
                 <div class="col-8">
-                    <select class="custom-select form-control mb-2 mr-sm-2 col-8" name="estado" id="estado">
-                        <option selected>Selecione</option>
-                        <option value="AC">AC</option>
-                        <option value="AC">AC</option>
-                        <option value="AP">AP</option>
-                        <option value="AM">AM</option>
-                        <option value="BA">BA</option>
-                        <option value="CE">CE</option>
-                        <option value="DF">DF</option>
-                        <option value="ES">ES</option>
-                        <option value="GO">GO</option>
-                        <option value="MA">MA</option>
-                        <option value="MT">MT</option>
-                        <option value="MS">MS</option>
-                        <option value="MG">MG</option>
-                        <option value="PA">PA</option>
-                        <option value="PB">PB</option>
-                        <option value="PR">PR</option>
-                        <option value="PE">PE</option>
-                        <option value="PI">PI</option>
-                        <option value="RJ">RJ</option>
-                        <option value="RN">RN</option>
-                        <option value="RS">RS</option>
-                        <option value="RO">RO</option>
-                        <option value="RR">RR</option>
-                        <option value="SC">SC</option>
-                        <option value="SP">SP</option>
-                        <option value="SE">SE</option>
-                        <option value="TO">TO'</option>
-                    </select>
+                    <select id="estado" name="estado" class="form-control col-8"></select>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="cidade" class="col-3 col-form-label">Cidade</label> 
                 <div class="col-8">
-                    <input id="cidade" name="cidade" type="text" class="form-control col-8">
+                    <select id="cidade" name="cidade" class="form-control col-8"></select>
                 </div>
             </div>
             <div class="form-group row">
@@ -121,4 +121,30 @@
     @endforeach
 </div>
 @endif
+<script src="{{ asset('js/app.js')}}" type="text/javascript"></script>
+<script src="{{ asset('js/cidades-estados-1.4-utf8.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+                    var estados = document.getElementById('estado');
+                    var cidades = document.getElementById('cidade');
+                    cidades.onchange = function()
+                            {
+                            if (cidades.value !== "") {
+                            //Para o redirecionamento troque esta linha por window.location
+                            //veja o exemplo no final da resposta para ter um exemplo
+                            //alert(estados.value + " - " + cidades.value);
+                            }
+                            };
+                    new dgCidadesEstados({
+                    estado: estados,
+                            cidade: cidades,
+                            estadoVal: '<%=Request("estado") %>',
+                            cidadeVal: '<%=Request("cidade") %>'
+                            });
+                    var opts = estados.getElementsByTagName("option");
+                    var i = 0, j = opts.length, e;
+                    for (; i < j; i++) {
+                    e = opts[i];
+                    }
+                   
+</script>
 @endsection
