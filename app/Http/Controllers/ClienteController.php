@@ -141,7 +141,24 @@ class ClienteController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function relatorios() {
-        return view('relatorios');
+        $clientes = [];
+        
+        return view('relatorios', compact('clientes'));
     }
+    
+    public function executaRelatorio(Request $request) {
+        
+        $filters = [
+            'idade' => $request->input('idade'),
+            'estado' => $request->input('estado'),
+            'cidade' => $request->input('cidade'),
+        ];
+         
+        $cm = new Cliente;
+        
+        $clientes = $cm->executaRelatorio($filters);
+        
+        return view('relatorios', compact('clientes'));
+    }    
 
 }

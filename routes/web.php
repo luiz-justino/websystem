@@ -19,3 +19,4 @@ Route::get('/clientes/editar/{id}', 'ClienteController@edit')->name('editaClient
 Route::post('/clientes/editar/{id}', 'ClienteController@update')->name('atualizaCliente');
 Route::get('/clientes/excluir/{id}', 'ClienteController@destroy')->name('excluiCliente');
 Route::get('/relatorios', 'ClienteController@relatorios')->name('relatorios');
+Route::post('/relatorios', 'ClienteController@executaRelatorio')->name('executaRelatorio');
