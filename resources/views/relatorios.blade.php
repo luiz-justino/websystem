@@ -124,7 +124,6 @@
         @endforeach
     </tbody>
 </table>
-<script src="{{ asset('js/app.js')}}" type="text/javascript"></script>
 <script src="{{ asset('js/cidades-estados-1.4-utf8.js')}}" type="text/javascript"></script>
 <script src="{{ asset('js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
