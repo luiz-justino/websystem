@@ -17,7 +17,7 @@ class CreateClientesTable extends Migration
             $table->increments('id');
             $table->string('nome', 255);
             $table->string('email', 255);
-            $table->integer('idade', 3);
+            $table->integer('idade', FALSE);
             $table->char('estado_civil', 13);
             $table->string('endereco', 150);
             $table->string('numero', 20);
