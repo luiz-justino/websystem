@@ -28,12 +28,14 @@ O usuário e senha padrão em que o projeto foi criado está definido com as cre
 
 Caso já tenha o SGBD MySQL instalado no seu computador com credencais de acesso diferentes, tudo bem, apenas modifique o
 arquivo .env na pasta raiz do projeto, onde estão as configurações de acesso ao banco:
+```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=websystem
 DB_USERNAME=root
 DB_PASSWORD=root
+```
 
 Acesse o MySQL e crie o banco de dados executando o seguinte comando:
 
@@ -43,10 +45,11 @@ O projeto utiliza o PHP Artisan e o Eloquent, assim após a criação do banco �
 da pasta do projeto com o comando abaixo para criar a tabela de 'clientes' que utiliza-se no projeto:
 
 	php artisan migrate
+    
+Após isso as configurações finalizaram-se. Para executar o projeto, execute a linha de comando no terminal aberto de dentro da pasta do projeto:
 
-4) Após isso as configurações finalizaram-se. Para executar o projeto acesse o caminho do seu projeto no navegador. Também é possível acessá-lo
-por linha de comando executando no terminal aberto de dentro da pasta do projeto:
 	php artisan serve
+
 Após a execução ele mostrará o link de acesso: http://127.0.0.1:8000
 o qual é só copiar e colar no navegador.
 
